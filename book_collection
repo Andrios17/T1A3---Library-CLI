@@ -1,0 +1,14 @@
+[
+    {
+        "Title": "Harry Potter and the Chamber of Secrets",
+        "Author": "J.K Rowling",
+        "Year": "1998",
+        "Loaned": false
+    },
+    {
+        "Title": "Alex",
+        "Author": "Alex",
+        "Year": "2022",
+        "Loaned": false
+    }
+]

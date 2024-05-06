@@ -24,6 +24,17 @@ def add_book():
     with open('book_collection', 'w') as f:
         json.dump(f_data, f, indent=4)
 
+def find_book():
+    title = input('Name of the book: ')
+    os.system('clear')
+    for book in book_collection:
+        if book['Title'] == title:
+            print(book)
+            input('Press Enter to return to the directory: ')
+            return
+    print('Book not found')
+    input('Press Enter to return to the directory: ')
+
 def display_library():
     with open('book_collection', 'r') as f:
         book_collection = json.load(f)
@@ -57,6 +68,9 @@ def main():
         elif user_input == 1:
             os.system('clear')
             add_book()
+        elif user_input == 2:
+            os.system('clear')
+            find_book()
         elif user_input == 3:
             os.system('clear')
             display_library()
