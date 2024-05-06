@@ -1,6 +1,5 @@
 import json, os
 
-
 book_collection = []
 
 def check_json():
@@ -26,11 +25,16 @@ def add_book():
         json.dump(f_data, f, indent=4)
 
 def display_library():
-     pass
+    with open('book_collection', 'r') as f:
+        book_collection = json.load(f)
+        for book in book_collection:
+            print(book)
+    input('Press Enter to return to the directory: ')
 
 def main():
     check_json()
     while True:
+        os.system('clear')
         print('')
         print('************LIBRARY DIRECTORY************')
         print('Please choose from the following options')
@@ -51,7 +55,11 @@ def main():
             print('Goodbye!')
             break
         elif user_input == 1:
+            os.system('clear')
             add_book()
-
+        elif user_input == 3:
+            os.system('clear')
+            display_library()
+        
 if __name__ == '__main__':
     main()
