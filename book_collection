@@ -3,7 +3,7 @@
         "Title": "Harry Potter",
         "Author": "J.k Rowling",
         "Year": "2001",
-        "Loaned": false
+        "Loaned": true
     },
     {
         "Title": "James Bond",

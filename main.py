@@ -36,8 +36,6 @@ def find_book():
                 book_found = book
                 input('Press Enter to return to the directory: ')
                 return
-            # elif book['Title'] != title:
-            #     print('Book not found')
         if book_found is None:
             print('Book not found')
     input('Press ENTER to return to the directory: ')
@@ -51,13 +49,19 @@ def display_library():
 
 def loan_book():
     title = input('Name of the book: ')
+    loaned_book = None
     with open('book_collection', 'r') as f:
         book_collection = json.load(f)
         for book in book_collection:
             if book['Title'] == title and book['Loaned'] is False:
                 book['Loaned'] = True
-                json.dump(book, f)
-        input('Press Enter to return to the directory: ')
+                loan_book = book
+            elif book['Title'] == title and book['Loaned'] is True:
+                print('This book is already on loan')
+                return
+        with open('book_collection', 'w') as f:
+            json.dump(book_collection, f, indent=4)
+    input('Press Enter to return to the directory: ')
 
 def main():
     check_json()
@@ -94,6 +98,10 @@ def main():
         elif user_input == 4:
             os.system('clear')
             loan_book()
+        elif user_input == 5:
+            os.system('clear')
+            
+
         
 if __name__ == '__main__':
     main()
