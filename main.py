@@ -2,6 +2,9 @@ import json, os
 
 book_collection = []
 
+class Quit(Exception):
+    pass
+
 def check_json():
     if os.path.exists('book_collection'):
         with open('book_collection', 'r') as f:
@@ -41,10 +44,14 @@ def find_book():
     input('Press ENTER to return to the directory: ')
 
 def display_library():
+    books_in_library = None
     with open('book_collection', 'r') as f:
         book_collection = json.load(f)
         for book in book_collection:
             print(book)
+            books_in_library = book
+    if books_in_library is None:
+        print('There are currently no books in the library')
     input('Press Enter to return to the directory: ')
 
 def loan_book():
@@ -122,7 +129,11 @@ def main():
         print('*****************************************')
         print('')
 
-        user_input = int(input('Enter your choice:  '))
+        try:
+            user_input = int(input('Enter your choice:  '))
+        except ValueError:
+            print('Invalid input')
+            print('Please enter the number of the corresponding option')
 
         if user_input == 8:
             os.system('clear')
