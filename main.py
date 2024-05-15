@@ -63,6 +63,34 @@ def loan_book():
             json.dump(book_collection, f, indent=4)
     input('Press Enter to return to the directory: ')
 
+def display_loaned_books():
+    books_on_loan = None
+    with open('book_collection', 'r') as f:
+        book_collection = json.load(f)
+        for book in book_collection:
+            if book['Loaned'] is True:
+                print(book)     
+                books_on_loan = book
+        if books_on_loan is None:
+            print('There are currently no books on loan')
+    input('Press Enter to return to the directory: ')
+
+def return_book():
+    title = input('Name of the book: ')
+    returned_book = None
+    with open('book_collection', 'r') as f:
+        book_collection = json.load(f)
+        for book in book_collection:
+            if book['Title'] == title and book['Loaned'] is True:
+                book['Loaned'] = False
+                returned_book = book
+            elif book['Title'] == title and book['Loaned'] is False:
+                print('This book is not on loan')
+                return
+        with open('book_collection', 'w') as f:
+            json.dump(book_collection, f, indent=4)
+    input('Press Enter to return to the directory: ')
+
 def main():
     check_json()
     while True:
@@ -100,8 +128,10 @@ def main():
             loan_book()
         elif user_input == 5:
             os.system('clear')
-            
-
-        
+            display_loaned_books()
+        elif user_input == 6:
+            os.system('clear')
+            return_book()
+    
 if __name__ == '__main__':
     main()
