@@ -91,6 +91,19 @@ def return_book():
             json.dump(book_collection, f, indent=4)
     input('Press Enter to return to the directory: ')
 
+def remove_book():
+    title = input('Name of the book: ')
+    removed_book = None
+    with open('book_collection', 'r') as f:
+        book_collection = json.load(f)
+        for book in book_collection:
+            if book['Title'] == title:
+                book_collection.remove(book)
+                removed_book = book
+        with open('book_collection', 'w') as f:
+            json.dump(book_collection, f, indent=4)
+    input('Press Enter to return to the directory: ')
+
 def main():
     check_json()
     while True:
@@ -104,13 +117,14 @@ def main():
         print('4) Place a book on loan')
         print('5) View all loaned books')
         print('6) Return a book to the library')
-        print('7) Quit')
+        print('7) Remove a book from the library')
+        print('8) Quit')
         print('*****************************************')
         print('')
 
         user_input = int(input('Enter your choice:  '))
 
-        if user_input == 7:
+        if user_input == 8:
             os.system('clear')
             print('Goodbye!')
             break
@@ -132,6 +146,9 @@ def main():
         elif user_input == 6:
             os.system('clear')
             return_book()
+        elif user_input == 7:
+            os.system('clear')
+            remove_book()
     
 if __name__ == '__main__':
     main()
