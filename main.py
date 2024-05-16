@@ -1,7 +1,7 @@
 import json, os
 from color50 import rgb, constants
 from art import *
-from datetime import datetime
+from datetime import datetime, timedelta
 
 book_collection = []
 
@@ -10,12 +10,6 @@ class Quit(Exception):
 
 def time_stamp():
     return datetime.now().strftime('%d-%m-%Y')
-
-def add_time_stamp(book):
-    with open(book_collection, 'r') as f:
-        book_collection = json.load(f)
-        pass
-
 
 def check_json():
     if os.path.exists('book_collection'):
@@ -98,17 +92,37 @@ def loan_book():
         if result is False:
             break
 
-def display_loaned_books():
-    books_on_loan = None
-    with open('book_collection', 'r') as f:
-        book_collection = json.load(f)
-        for book in book_collection:
-            if book['Loaned'] is True:
-                print(book)     
-                books_on_loan = book
-        if books_on_loan is None:
-            print('There are currently no books on loan')
-    input('Press Enter to return to the directory: ')
+def display_loaned_books(loan_period):
+    choice = input('Please enter 1 to view all loaned books or 2 to view overdue books')
+    match choice:
+        case '1':
+            books_on_loan = None
+            with open('book_collection', 'r') as f:
+                book_collection = json.load(f)
+                for book in book_collection:
+                    if book['Loaned'] is True:
+                        print(book)     
+                        books_on_loan = book
+                if books_on_loan is None:
+                    print('There are currently no books on loan')
+            input('Press Enter to return to the directory: ')
+        case '2':
+            books_on_loan = None
+            with open('book_collection', 'r') as f:
+                book_collection = json.load(f)
+                for book in book_collection:
+                    if book['Loaned'] is True:
+                        todays_date = datetime.now()
+                        date_in_file = book['Loaned Date']
+                        loaned_date = datetime.strptime(date_in_file, '%d-%m-%Y')
+                        difference = todays_date - loaned_date
+                        if difference >= timedelta(days=loan_period):
+                            print(book)
+                            books_on_loan = book
+                if books_on_loan is None:
+                    print('There are currently no overdue books currently on loan')
+            input('Press Enter to return to the directory: ')
+
 
 def return_book():
     while True:
@@ -165,8 +179,25 @@ def repeat(use_case):
             print('Invalid input')
             continue 
 
+def loan_period():
+    while True:
+        os.system('clear')
+        loan_period = int(input('Please enter the loan period of the library in days: '))
+        library_period = {'Loan Period': loan_period}
+        if loan_period > 0:
+            with open('book_collection', 'r') as f:
+                f_data = json.load(f)
+                f_data.append(library_period)
+            with open('book_collection', 'w') as f:
+                json.dump(f_data, f, indent=4)
+                print('Loan Period Successfully Set')
+        else:
+            print('Please enter a valid loan period')
+            continue
+
 def main():
     check_json()
+    loan_period()
     my_color = rgb(0, 0, 255)
     options_color = rgb(255, 128, 0)
     directory = text2art("LIBRARY DIRECTORY")
@@ -209,7 +240,7 @@ def main():
             loan_book()
         elif user_input == 5:
             os.system('clear')
-            display_loaned_books()
+            display_loaned_books(loan_period)
         elif user_input == 6:
             os.system('clear')
             return_book()
