@@ -2,24 +2,6 @@
     {
         "Title": "Harry Potter",
         "Author": "J.K Rowling",
-        "Year": "2011",
-        "Loaned": false
-    },
-    {
-        "Title": "Harry Potter",
-        "Author": "J.K Rowling",
-        "Year": "2020",
-        "Loaned": false
-    },
-    {
-        "Title": "James Bond",
-        "Author": "Me",
-        "Year": "2020",
-        "Loaned": false
-    },
-    {
-        "Title": "Transformers",
-        "Author": "you",
         "Year": "2020",
         "Loaned": false
     }

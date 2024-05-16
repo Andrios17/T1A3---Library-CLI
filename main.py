@@ -1,11 +1,21 @@
 import json, os
 from color50 import rgb, constants
 from art import *
+from datetime import datetime
 
 book_collection = []
 
 class Quit(Exception):
     pass
+
+def time_stamp():
+    return datetime.now().strftime('%d-%m-%Y')
+
+def add_time_stamp(book):
+    with open(book_collection, 'r') as f:
+        book_collection = json.load(f)
+        pass
+
 
 def check_json():
     if os.path.exists('book_collection'):
@@ -74,12 +84,16 @@ def loan_book():
                 if book['Title'] == title and book['Loaned'] is False:
                     book['Loaned'] = True
                     loan_book = book
+                    time_loaned= time_stamp()
+                    book['Loaned Date'] = time_loaned
+                    book['Loanee'] = input('Please enter loanees name: ')
+                    book['Contact PH'] = input('Please enter loanee phone number: ')
+                    book['Contact Address'] = input('Please enter loanee address: ')
                 elif book['Title'] == title and book['Loaned'] is True:
                     print('This book is already on loan')
                     return
             with open('book_collection', 'w') as f:
                 json.dump(book_collection, f, indent=4)
-        input('Press Enter to return to the directory: ')
         result = repeat('loan')
         if result is False:
             break
@@ -107,6 +121,10 @@ def return_book():
                 if book['Title'] == title and book['Loaned'] is True:
                     book['Loaned'] = False
                     returned_book = book
+                    book.pop('Loaned Date')
+                    book.pop('Loanee')
+                    book.pop('Contact PH')
+                    book.pop('Contact Address')
                 elif book['Title'] == title and book['Loaned'] is False:
                     print('This book is not on loan')
                     return
@@ -154,7 +172,6 @@ def main():
     directory = text2art("LIBRARY DIRECTORY")
     end_bracket = text2art("----------------")
     goodbye = text2art("GOODBYE!")
-    
     while True:
         os.system('clear')
         print('')
