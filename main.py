@@ -20,6 +20,14 @@ def check_json():
             book_collection = []
             json.dump(book_collection, f, indent=4)
 
+def check_txt():
+    if os.path.exists('loan_period.txt'):
+        with open('loan_period.txt', 'r') as f:
+            book_collection = f.readlines()
+    else:
+        with open('loan_period.txt', 'w') as f:
+            f.writelines()
+
 def add_book():
     while True:
         os.system('clear')
@@ -69,6 +77,13 @@ def display_library():
     input('Press Enter to return to the directory: ')
 
 def loan_book():
+    # with open('book_collection', 'r') as f:
+    #     book_collection = json.load(f)
+    #     for book in book_collection:
+    #         if ['Loan Period'] in book_collection == True:
+    #             continue
+    #         else:
+    #             loan_period()
     while True:
         title = input('Name of the book: ')
         loaned_book = None
@@ -182,22 +197,19 @@ def repeat(use_case):
 def loan_period():
     while True:
         os.system('clear')
-        loan_period = int(input('Please enter the loan period of the library in days: '))
-        library_period = {'Loan Period': loan_period}
-        if loan_period > 0:
-            with open('book_collection', 'r') as f:
-                f_data = json.load(f)
-                f_data.append(library_period)
-            with open('book_collection', 'w') as f:
-                json.dump(f_data, f, indent=4)
-                print('Loan Period Successfully Set')
+        loan_period = input('Please enter the loan period for this library in days: ')
+        loan_period_int = int(loan_period)
+        if loan_period_int > 0:
+            with open('loan_period.txt', 'w') as f:
+             f.write(loan_period)
+             break
         else:
             print('Please enter a valid loan period')
             continue
 
 def main():
     check_json()
-    loan_period()
+    check_txt()
     my_color = rgb(0, 0, 255)
     options_color = rgb(255, 128, 0)
     directory = text2art("LIBRARY DIRECTORY")
@@ -208,14 +220,14 @@ def main():
         print('')
         print(my_color + directory + constants.RESET)
         print(options_color + 'Please choose from the following options' + constants.RESET)
-        print('1) Add a book to the library')
-        print('2) Find a book in the library')
-        print('3) Display all books in the library')
-        print('4) Place a book on loan')
-        print('5) View all loaned books')
-        print('6) Return a book to the library')
-        print('7) Remove a book from the library')
-        print('8) Quit')
+        print(my_color + '1)' + constants.RESET + ' Add a book to the library')
+        print(my_color + '2)' + constants.RESET + ' Find a book in the library')
+        print(my_color + '3)' + constants.RESET + ' Display all books in the library')
+        print(my_color + '4)' + constants.RESET + ' Place a book on loan')
+        print(my_color + '5)' + constants.RESET + ' View all loaned books')
+        print(my_color + '6)' + constants.RESET + ' Return a book to the library')
+        print(my_color + '7)' + constants.RESET + ' Remove a book from the library')
+        print(my_color + '8)' + constants.RESET + ' Quit')
         print(my_color + end_bracket + constants.RESET)
         print('')
 
@@ -237,6 +249,9 @@ def main():
             display_library()
         elif user_input == 4:
             os.system('clear')
+            option = int(input(options_color + 'Please Enter 1 To Set The Standard Loan Period, or 2 If It Is Already Set' + constants.RESET))
+            if option == 1:
+                loan_period()
             loan_book()
         elif user_input == 5:
             os.system('clear')

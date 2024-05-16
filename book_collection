@@ -1,18 +1,14 @@
 [
     {
-        "Title": "Harry Potter",
-        "Author": "J.K Rowling",
+        "Title": "Harry Potter ",
+        "Author": "Alex",
         "Year": "2020",
         "Loaned": false
     },
     {
-        "Title": "James Bond",
-        "Author": "DB Cooper",
+        "Title": "Al",
+        "Author": "Al",
         "Year": "2020",
-        "Loaned": true,
-        "Loaned Date": "15-05-2024",
-        "Loanee": "Alex",
-        "Contact PH": "0420",
-        "Contact Address": "hello"
+        "Loaned": false
     }
 ]
