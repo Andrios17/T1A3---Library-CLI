@@ -1,4 +1,6 @@
 import json, os
+from color50 import rgb, constants
+from art import *
 
 book_collection = []
 
@@ -147,11 +149,17 @@ def repeat(use_case):
 
 def main():
     check_json()
+    my_color = rgb(0, 0, 255)
+    options_color = rgb(255, 128, 0)
+    directory = text2art("LIBRARY DIRECTORY")
+    end_bracket = text2art("----------------")
+    goodbye = text2art("GOODBYE!")
+    
     while True:
         os.system('clear')
         print('')
-        print('************LIBRARY DIRECTORY************')
-        print('Please choose from the following options')
+        print(my_color + directory + constants.RESET)
+        print(options_color + 'Please choose from the following options' + constants.RESET)
         print('1) Add a book to the library')
         print('2) Find a book in the library')
         print('3) Display all books in the library')
@@ -160,14 +168,15 @@ def main():
         print('6) Return a book to the library')
         print('7) Remove a book from the library')
         print('8) Quit')
-        print('*****************************************')
+        print(my_color + end_bracket + constants.RESET)
         print('')
 
-        user_input = int(input('Enter your choice:  '))
+
+        user_input = int(input(options_color + 'Enter your choice:  ' + constants.RESET))
 
         if user_input == 8:
             os.system('clear')
-            print('Goodbye!')
+            print(options_color + goodbye + constants.RESET)
             break
         elif user_input == 1:
             os.system('clear')
