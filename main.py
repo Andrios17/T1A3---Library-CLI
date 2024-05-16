@@ -15,33 +15,41 @@ def check_json():
             json.dump(book_collection, f, indent=4)
 
 def add_book():
-    title = input('Name of the book: ')
-    author = input('Author of the book: ')
-    year_published = input('Year the book was published: ')
-    loaned = False
-    book_details = {'Title': title, 'Author': author, 'Year': year_published, 'Loaned': loaned}
-    book_collection.append(book_details)
-    with open('book_collection', 'r') as f:
-        f_data = json.load(f)
-        f_data.append(book_details)
-    with open('book_collection', 'w') as f:
-        json.dump(f_data, f, indent=4)
+    while True:
+        os.system('clear')
+        title = input('Name of the book: ')
+        author = input('Author of the book: ')
+        year_published = input('Year the book was published: ')
+        loaned = False
+        book_details = {'Title': title, 'Author': author, 'Year': year_published, 'Loaned': loaned}
+        book_collection.append(book_details)
+        with open('book_collection', 'r') as f:
+            f_data = json.load(f)
+            f_data.append(book_details)
+        with open('book_collection', 'w') as f:
+            json.dump(f_data, f, indent=4)
+            print('Book added')
+        result = repeat('add')
+        if result is False:
+            return
 
 def find_book():
-    title = input('Name of the book: ')
-    book_found = None
-    os.system('clear')
-    with open('book_collection', 'r') as f:
-        book_collection = json.load(f)
-        for book in book_collection:
-            if book['Title'] == title:
-                print(book)
-                book_found = book
-                input('Press Enter to return to the directory: ')
-                return
-        if book_found is None:
-            print('Book not found')
-    input('Press ENTER to return to the directory: ')
+    while True:
+        os.system('clear')
+        title = input('Name of the book: ')
+        book_found = None
+        os.system('clear')
+        with open('book_collection', 'r') as f:
+            book_collection = json.load(f)
+            for book in book_collection:
+                if book['Title'] == title:
+                    print(book)
+                    book_found = book
+            if book_found is None:
+                print('Book not found')
+        result = repeat('find')
+        if result is False:
+            return
 
 def display_library():
     books_in_library = None
@@ -55,20 +63,24 @@ def display_library():
     input('Press Enter to return to the directory: ')
 
 def loan_book():
-    title = input('Name of the book: ')
-    loaned_book = None
-    with open('book_collection', 'r') as f:
-        book_collection = json.load(f)
-        for book in book_collection:
-            if book['Title'] == title and book['Loaned'] is False:
-                book['Loaned'] = True
-                loan_book = book
-            elif book['Title'] == title and book['Loaned'] is True:
-                print('This book is already on loan')
-                return
-        with open('book_collection', 'w') as f:
-            json.dump(book_collection, f, indent=4)
-    input('Press Enter to return to the directory: ')
+    while True:
+        title = input('Name of the book: ')
+        loaned_book = None
+        with open('book_collection', 'r') as f:
+            book_collection = json.load(f)
+            for book in book_collection:
+                if book['Title'] == title and book['Loaned'] is False:
+                    book['Loaned'] = True
+                    loan_book = book
+                elif book['Title'] == title and book['Loaned'] is True:
+                    print('This book is already on loan')
+                    return
+            with open('book_collection', 'w') as f:
+                json.dump(book_collection, f, indent=4)
+        input('Press Enter to return to the directory: ')
+        result = repeat('loan')
+        if result is False:
+            break
 
 def display_loaned_books():
     books_on_loan = None
@@ -83,33 +95,55 @@ def display_loaned_books():
     input('Press Enter to return to the directory: ')
 
 def return_book():
-    title = input('Name of the book: ')
-    returned_book = None
-    with open('book_collection', 'r') as f:
-        book_collection = json.load(f)
-        for book in book_collection:
-            if book['Title'] == title and book['Loaned'] is True:
-                book['Loaned'] = False
-                returned_book = book
-            elif book['Title'] == title and book['Loaned'] is False:
-                print('This book is not on loan')
-                return
-        with open('book_collection', 'w') as f:
-            json.dump(book_collection, f, indent=4)
-    input('Press Enter to return to the directory: ')
+    while True:
+        os.system('clear')
+        title = input('Name of the book: ')
+        returned_book = None
+        with open('book_collection', 'r') as f:
+            book_collection = json.load(f)
+            for book in book_collection:
+                if book['Title'] == title and book['Loaned'] is True:
+                    book['Loaned'] = False
+                    returned_book = book
+                elif book['Title'] == title and book['Loaned'] is False:
+                    print('This book is not on loan')
+                    return
+            with open('book_collection', 'w') as f:
+                json.dump(book_collection, f, indent=4)
+        result = repeat('return')
+        if result is False:
+            break
 
 def remove_book():
-    title = input('Name of the book: ')
-    removed_book = None
-    with open('book_collection', 'r') as f:
-        book_collection = json.load(f)
-        for book in book_collection:
-            if book['Title'] == title:
-                book_collection.remove(book)
-                removed_book = book
-        with open('book_collection', 'w') as f:
-            json.dump(book_collection, f, indent=4)
-    input('Press Enter to return to the directory: ')
+    while True:
+        os.system('clear')
+        title = input('Name of the book: ')
+        removed_book = None
+        with open('book_collection', 'r') as f:
+            book_collection = json.load(f)
+            for book in book_collection:
+                if book['Title'] == title:
+                    book_collection.remove(book)
+                    removed_book = book
+                elif book['Title'] != title:
+                    print('Book not found')
+            with open('book_collection', 'w') as f:
+                json.dump(book_collection, f, indent=4)
+        result = repeat('remove')
+        if result is False:
+            break
+
+def repeat(use_case):
+    user_choice = 0
+    while user_choice != '1' or user_choice != '2':
+        user_choice = input(f'Press 1 to {use_case} another book or 2 to return to the directory: ')
+        if user_choice == '1':
+            break
+        elif user_choice == '2':
+            return False
+        else:
+            print('Invalid input')
+            continue 
 
 def main():
     check_json()
@@ -129,11 +163,7 @@ def main():
         print('*****************************************')
         print('')
 
-        try:
-            user_input = int(input('Enter your choice:  '))
-        except ValueError:
-            print('Invalid input')
-            print('Please enter the number of the corresponding option')
+        user_input = int(input('Enter your choice:  '))
 
         if user_input == 8:
             os.system('clear')
