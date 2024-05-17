@@ -3,26 +3,6 @@
         "Title": "Harry Potter",
         "Author": "J.K Rowling",
         "Year": "2001",
-        "Loaned": true,
-        "Loaned Date": "01-05-2024",
-        "Loanee": "ME",
-        "Contact PH": "ME",
-        "Contact Address": "ME"
-    },
-    {
-        "Title": "Hello",
-        "Author": "Hello",
-        "Year": "2020",
-        "Loaned": true,
-        "Loaned Date": "17-05-2024",
-        "Loanee": "Me",
-        "Contact PH": "You",
-        "Contact Address": "202"
-    },
-    {
-        "Title": "Fallout",
-        "Author": "Bethesda",
-        "Year": "2020",
         "Loaned": false
     }
 ]
