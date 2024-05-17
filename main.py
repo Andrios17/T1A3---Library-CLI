@@ -17,7 +17,7 @@ def main():
     end_bracket = text2art("----------------")
     goodbye = text2art("GOODBYE!")
     while True:
-        os.system('clear')
+        library.clear_OS()
         print('')
         print(my_color + directory + constants.RESET)
         print(options_color + 'Please choose from the following options' + constants.RESET)
@@ -35,33 +35,33 @@ def main():
         try:
             user_input = int(input(options_color + 'Enter your choice:  ' + constants.RESET))
             if user_input == 8:
-                os.system('clear')
+                library.clear_OS()
                 print(options_color + goodbye + constants.RESET)
                 break
             elif user_input == 1:
-                os.system('clear')
+                library.clear_OS()
                 library.add_book()
             elif user_input == 2:
-                os.system('clear')
+                library.clear_OS()
                 library.find_book()
             elif user_input == 3:
-                os.system('clear')
+                library.clear_OS()
                 library.display_library()
             elif user_input == 4:
-                os.system('clear')
+                library.clear_OS()
                 print(options_color + 'Setting a Loan Period is Required When First Using This Program!' + constants.RESET)
                 option = str(input(options_color + 'Please Enter 1 To Set The Standard Loan Period, OR Enter ANY OTHER KEY If It Is Already Set: ' + constants.RESET))
                 if option == '1':
                     library.loan_period()
                 library.loan_book()
             elif user_input == 5:
-                os.system('clear')
+                library.clear_OS()
                 library.display_loaned_books()
             elif user_input == 6:
-                os.system('clear')
+                library.clear_OS()
                 library.return_book()
             elif user_input == 7:
-                os.system('clear')
+                library.clear_OS()
                 library.remove_book()
             else:
                 print(options_color + 'Invalid Input' + constants.RESET)

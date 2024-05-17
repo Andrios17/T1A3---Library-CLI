@@ -12,6 +12,12 @@ options_color = rgb(255, 128, 0)
 error_color = rgb(255, 0, 0)
 success_color = rgb(0,128,0)
 
+def clear_OS():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
 def time_stamp():
     return datetime.now().strftime('%d-%m-%Y')
 
@@ -34,7 +40,7 @@ def check_txt():
 
 def add_book():
     while True:
-        os.system('clear')
+        clear_OS()
         heading = text2art('---ADD A BOOK TO THE LIBRARY---')
         print(my_color + heading + constants.RESET)
         title = input(options_color + 'Name of the book: ' + constants.RESET)
@@ -55,12 +61,12 @@ def add_book():
 
 def find_book():
     while True:
-        os.system('clear')
+        clear_OS()
         heading = text2art('---FIND A BOOK---')
         print(my_color + heading + constants.RESET)
         title = input(options_color + 'Name of the book: ' + constants.RESET)
         book_found = None
-        os.system('clear')
+        clear_OS()
         with open('book_collection.json', 'r') as f:
             book_collection = json.load(f)
             for book in book_collection:
@@ -110,7 +116,7 @@ def display_loaned_library_mult():
 
 def loan_book():
     while True:
-        os.system('clear')
+        clear_OS()
         title = text2art("--------LOAN A BOOK--------")
         print(my_color + title + constants.RESET)
         display_library_multi_function()
@@ -177,7 +183,7 @@ def display_loaned_books():
 
 def return_book():
     while True:
-        os.system('clear')
+        clear_OS()
         heading = text2art('RETURN TO LIBRARY')
         print(options_color + heading + constants.RESET)
         outcome = display_loaned_library_mult()
@@ -212,7 +218,7 @@ def return_book():
 
 def remove_book():
     while True:
-        os.system('clear')
+        clear_OS()
         heading = text2art("-------REMOVE BOOKS-------")
         print(my_color + heading + constants.RESET)
         result = display_library_multi_function()
@@ -252,7 +258,7 @@ def repeat(use_case):
 def loan_period():
     while True:
         try:
-            os.system('clear')
+            clear_OS()
             loan_period = input(options_color + 'Please enter the loan period for this library in days: ' + constants.RESET)
             loan_period_int = int(loan_period)
             if loan_period_int > 0:
