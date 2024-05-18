@@ -1,6 +1,6 @@
 import json
 import os
-import library
+import Src.library as library
 from datetime import datetime, timedelta
 
 from color50 import rgb, constants
@@ -11,6 +11,7 @@ options_color = rgb(255, 128, 0)
 error_color = rgb(255, 0, 0)
 
 def main():
+    library.clear_OS
     library.check_json()
     library.check_txt()
     directory = text2art("LIBRARY DIRECTORY")
@@ -20,7 +21,8 @@ def main():
         library.clear_OS()
         print('')
         print(my_color + directory + constants.RESET)
-        print(options_color + 'Please choose from the following options' + constants.RESET)
+        print(options_color + 'PLEASE CHOOSE FROM THE FOLLOWING OPTIONS' + constants.RESET)
+        print('')
         print(my_color + '1)' + constants.RESET + ' Add a book to the library')
         print(my_color + '2)' + constants.RESET + ' Find a book in the library')
         print(my_color + '3)' + constants.RESET + ' Display all books in the library')

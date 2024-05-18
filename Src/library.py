@@ -81,13 +81,16 @@ def find_book():
 
 def display_library():
     books_in_library = None
+    heading = text2art('---LIBRARY---')
+    print(my_color + heading + constants.RESET)
     with open('book_collection.json', 'r') as f:
         book_collection = json.load(f)
         for book in book_collection:
             print(book)
             books_in_library = book
     if books_in_library is None:
-        print('There are currently no books in the library')
+        print(error_color + 'There are currently no books in the library' + constants.RESET)
+        print(error_color + 'Please use the add books feature' + constants.RESET)
     input(success_color + 'Press Enter to return to the directory: ' + constants.RESET)
 
 def display_library_multi_function():
@@ -119,7 +122,11 @@ def loan_book():
         clear_OS()
         title = text2art("--------LOAN A BOOK--------")
         print(my_color + title + constants.RESET)
-        display_library_multi_function()
+        result = display_library_multi_function()
+        if result is True:
+            print(error_color + 'There are currently no books in the library' + constants.RESET)
+            input(my_color + 'Please press any key to continue' + constants.RESET)
+            break
         title = input(options_color + 'Name of the book: ' + constants.RESET)
         loaned_book = None
         with open('book_collection.json', 'r') as f:
