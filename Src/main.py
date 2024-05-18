@@ -10,13 +10,10 @@ def main():
     library.clear_OS
     library.check_json()
     library.check_txt()
-    directory = text2art("LIBRARY DIRECTORY")
-    end_bracket = text2art("----------------")
-    goodbye = text2art("GOODBYE!")
     while True:
         library.clear_OS()
-        print(colorterminal.ColorText.PURPLE + end_bracket)
-        print(colorterminal.ColorText.PURPLE + directory)
+        library.print_heading('----------------')
+        library.print_heading('LIBRARY DIRECTORY')
         print(colorterminal.ColorText.YELLOW+ 'PLEASE CHOOSE FROM THE FOLLOWING OPTIONS')
         print('')
         print(colorterminal.ColorText.PURPLE + '1)' + colorterminal.ColorText.WHITE + ' Add a book to the library')
@@ -28,14 +25,14 @@ def main():
         print(colorterminal.ColorText.PURPLE + '7)' + colorterminal.ColorText.WHITE + ' Return a book to the library')
         print(colorterminal.ColorText.PURPLE + '8)' + colorterminal.ColorText.WHITE + ' Remove a book from the library')
         print(colorterminal.ColorText.PURPLE + '9)' + colorterminal.ColorText.WHITE + ' Exit Directory')
-        print(colorterminal.ColorText.PURPLE + end_bracket)
+        library.print_heading('----------------')
         print('')
 
         # try:
         user_input = int(input(colorterminal.ColorText.YELLOW + 'Enter your choice: ' + colorterminal.ColorText.WHITE))
         if user_input == 9:
             library.clear_OS()
-            print(colorterminal.ColorText.PURPLE + goodbye)
+            library.print_heading('GOODBYE')
             break
         elif user_input == 1:
             library.clear_OS()
@@ -48,7 +45,7 @@ def main():
             library.display_library()
         elif user_input == 4:
             library.clear_OS()
-            print(f'{colorterminal.ColorText.PURPLE}{text2art('LOAN PERIOD')}')
+            library.print_heading('LOAN PERIOD')
             print(f'{colorterminal.ColorText.RED}THE CURRENT LOAN PERIOD IN DAYS IS: {colorterminal.ColorText.GREEN}{library.display_txt()}\n')
             option = str(input(colorterminal.ColorText.YELLOW + '''PLEASE ENTER 1 TO RESET THE LOAN PERIOD\nOR\nPRESS ANY OTHER KEY TO EXIT IF DATE IS SET CORRECTLY: '''))
             if option == '1':

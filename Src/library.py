@@ -175,7 +175,7 @@ def loan_book():
 
 def display_loaned_books():
     print_heading("LOANED BOOKS")
-    choice = input(colorterminal.ColorText.PURPLE + 'Please enter 1 to view all loaned books or 2 to view overdue books: ' + colorterminal.ColorText.WHITE)
+    choice = input(colorterminal.ColorText.YELLOW + 'Please enter 1 to view all loaned books or 2 to view overdue books: ' + colorterminal.ColorText.WHITE)
     match choice:
         case '1':
             clear_OS()
@@ -281,7 +281,7 @@ def loan_period():
     while True:
         try:
             clear_OS()
-            print(f'{colorterminal.ColorText.PURPLE}{text2art('LOAN PERIOD')}')
+            print_heading('LOAN PERIOD')
             loan_period = input(colorterminal.ColorText.YELLOW + 'Please enter the loan period for this library in days: ' + colorterminal.ColorText.WHITE)
             loan_period_int = int(loan_period)
             if loan_period_int > 0:
