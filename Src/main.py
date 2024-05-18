@@ -1,14 +1,12 @@
 import json
 import os
-import library as library
 from datetime import datetime, timedelta
 
-from color50 import rgb, constants
 from art import *
+import colorterminal
+import library
 
-my_color = rgb(0, 0, 255)
-options_color = rgb(255, 128, 0)
-error_color = rgb(255, 0, 0)
+
 
 def main():
     library.clear_OS
@@ -20,25 +18,25 @@ def main():
     while True:
         library.clear_OS()
         print('')
-        print(my_color + directory + constants.RESET)
-        print(options_color + 'PLEASE CHOOSE FROM THE FOLLOWING OPTIONS' + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + directory)
+        print(colorterminal.ColorText.YELLOW+ 'PLEASE CHOOSE FROM THE FOLLOWING OPTIONS')
         print('')
-        print(my_color + '1)' + constants.RESET + ' Add a book to the library')
-        print(my_color + '2)' + constants.RESET + ' Find a book in the library')
-        print(my_color + '3)' + constants.RESET + ' Display all books in the library')
-        print(my_color + '4)' + constants.RESET + ' Place a book on loan')
-        print(my_color + '5)' + constants.RESET + ' View all loaned books')
-        print(my_color + '6)' + constants.RESET + ' Return a book to the library')
-        print(my_color + '7)' + constants.RESET + ' Remove a book from the library')
-        print(my_color + '8)' + constants.RESET + ' Quit')
-        print(my_color + end_bracket + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + '1)' + colorterminal.ColorText.WHITE + ' Add a book to the library')
+        print(colorterminal.ColorText.PURPLE + '2)' + colorterminal.ColorText.WHITE + ' Find a book in the library')
+        print(colorterminal.ColorText.PURPLE + '3)' + colorterminal.ColorText.WHITE + ' Display all books in the library')
+        print(colorterminal.ColorText.PURPLE + '4)' + colorterminal.ColorText.WHITE + ' Place a book on loan')
+        print(colorterminal.ColorText.PURPLE + '5)' + colorterminal.ColorText.WHITE + ' View all loaned books')
+        print(colorterminal.ColorText.PURPLE+ '6)' + colorterminal.ColorText.WHITE + ' Return a book to the library')
+        print(colorterminal.ColorText.PURPLE + '7)' + colorterminal.ColorText.WHITE + ' Remove a book from the library')
+        print(colorterminal.ColorText.PURPLE + '8)' + colorterminal.ColorText.WHITE + ' Quit')
+        print(colorterminal.ColorText.PURPLE + end_bracket)
         print('')
 
         try:
-            user_input = int(input(options_color + 'Enter your choice:  ' + constants.RESET))
+            user_input = int(input(colorterminal.ColorText.YELLOW + 'Enter your choice: ' + colorterminal.ColorText.WHITE))
             if user_input == 8:
                 library.clear_OS()
-                print(options_color + goodbye + constants.RESET)
+                print(colorterminal.ColorText.PURPLE + goodbye)
                 break
             elif user_input == 1:
                 library.clear_OS()
@@ -51,8 +49,8 @@ def main():
                 library.display_library()
             elif user_input == 4:
                 library.clear_OS()
-                print(options_color + 'Setting a Loan Period is Required When First Using This Program!' + constants.RESET)
-                option = str(input(options_color + 'Please Enter 1 To Set The Standard Loan Period, OR Enter ANY OTHER KEY If It Is Already Set: ' + constants.RESET))
+                print(colorterminal.ColorText.PURPLE + 'Setting a Loan Period is Required When First Using This Program!')
+                option = str(input(colorterminal.ColorText.YELLOW + 'Please Enter 1 To Set The Standard Loan Period, OR Enter ANY OTHER KEY If It Is Already Set: '))
                 if option == '1':
                     library.loan_period()
                 library.loan_book()
@@ -66,11 +64,11 @@ def main():
                 library.clear_OS()
                 library.remove_book()
             else:
-                print(options_color + 'Invalid Input' + constants.RESET)
+                print(colorterminal.ColorText.RED+ 'Invalid Input')
                 continue
         except Exception:
-            print(error_color + 'INVALID INPUT' + constants.RESET)
-            input(options_color + 'Please press any key to continue: ' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'INVALID INPUT')
+            input(colorterminal.ColorText.YELLOW + 'Please press any key to continue: ')
 
 if __name__ == '__main__':
     main()

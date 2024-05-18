@@ -2,15 +2,12 @@ import json
 import os
 from datetime import datetime, timedelta
 
-from color50 import rgb, constants
+import colorterminal
 from art import *
 
 book_collection = []
 txt_data = 'Hello World'
-my_color = rgb(0, 0, 255)
-options_color = rgb(255, 128, 0)
-error_color = rgb(255, 0, 0)
-success_color = rgb(0,128,0)
+
 
 def clear_OS():
     if os.name == 'nt':
@@ -42,10 +39,10 @@ def add_book():
     while True:
         clear_OS()
         heading = text2art('---ADD A BOOK TO THE LIBRARY---')
-        print(my_color + heading + constants.RESET)
-        title = input(options_color + 'Name of the book: ' + constants.RESET)
-        author = input(options_color + 'Author of the book: ' + constants.RESET)
-        year_published = input(options_color + 'Year the book was published: ' + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + heading)
+        title = input(colorterminal.ColorText.YELLOW + 'Name of the book: ' + colorterminal.ColorText.WHITE)
+        author = input(colorterminal.ColorText.YELLOW + 'Author of the book: ' + colorterminal.ColorText.WHITE)
+        year_published = input(colorterminal.ColorText.YELLOW + 'Year the book was published: ' + colorterminal.ColorText.WHITE)
         loaned = False
         book_details = {'Title': title, 'Author': author, 'Year': year_published, 'Loaned': loaned}
         book_collection.append(book_details)
@@ -54,7 +51,7 @@ def add_book():
             f_data.append(book_details)
         with open('book_collection.json', 'w') as f:
             json.dump(f_data, f, indent=4)
-            print(success_color + 'BOOK ADDED TO LIBRARY SUCCESSFULLY' + constants.RESET)
+            print(colorterminal.ColorText.GREEN+ 'BOOK ADDED TO LIBRARY SUCCESSFULLY')
         result = repeat('add')
         if result is False:
             return
@@ -63,8 +60,8 @@ def find_book():
     while True:
         clear_OS()
         heading = text2art('---FIND A BOOK---')
-        print(my_color + heading + constants.RESET)
-        title = input(options_color + 'Name of the book: ' + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + heading)
+        title = input(colorterminal.ColorText.YELLOW + 'Name of the book: ' + colorterminal.ColorText.WHITE)
         book_found = None
         clear_OS()
         with open('book_collection.json', 'r') as f:
@@ -74,7 +71,7 @@ def find_book():
                     print(book)
                     book_found = book
             if book_found is None:
-                print(error_color + 'Book not found' + constants.RESET)
+                print(colorterminal.ColorText.RED + 'Book not found')
         result = repeat('find')
         if result is False:
             return
@@ -82,16 +79,16 @@ def find_book():
 def display_library():
     books_in_library = None
     heading = text2art('---LIBRARY---')
-    print(my_color + heading + constants.RESET)
+    print(colorterminal.ColorText.PURPLE + heading + colorterminal.ColorText.WHITE)
     with open('book_collection.json', 'r') as f:
         book_collection = json.load(f)
         for book in book_collection:
             print(book)
             books_in_library = book
     if books_in_library is None:
-        print(error_color + 'There are currently no books in the library' + constants.RESET)
-        print(error_color + 'Please use the add books feature' + constants.RESET)
-    input(success_color + 'Press Enter to return to the directory: ' + constants.RESET)
+        print(colorterminal.ColorText.RED+ 'There are currently no books in the library')
+        print(colorterminal.ColorText.RED + 'Please use the add books feature')
+    input(colorterminal.ColorText.GREEN + 'Press Enter to return to the directory: ')
 
 def display_library_multi_function():
     books_in_library = None
@@ -110,7 +107,7 @@ def display_loaned_library_mult():
         book_collection = json.load(f)
         for book in book_collection:
             if book['Loaned'] is True:
-                print(book)     
+                print(book)  
                 books_on_loan = book
     if books_on_loan is None:
         return True
@@ -121,13 +118,14 @@ def loan_book():
     while True:
         clear_OS()
         title = text2art("--------LOAN A BOOK--------")
-        print(my_color + title + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + title + colorterminal.ColorText.WHITE)
         result = display_library_multi_function()
+        print('')
         if result is True:
-            print(error_color + 'There are currently no books in the library' + constants.RESET)
-            input(my_color + 'Please press any key to continue' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'There are currently no books in the library')
+            input(colorterminal.ColorText.YELLOW + 'Please press any key to continue')
             break
-        title = input(options_color + 'Name of the book: ' + constants.RESET)
+        title = input(colorterminal.ColorText.YELLOW + 'Name of the book: ' + colorterminal.ColorText.WHITE)
         loaned_book = None
         with open('book_collection.json', 'r') as f:
             book_collection = json.load(f)
@@ -137,23 +135,23 @@ def loan_book():
                     loaned_book = book
                     time_loaned= time_stamp()
                     book['Loaned Date'] = time_loaned
-                    book['Loanee'] = input(options_color + 'Please enter loanees name: ' + constants.RESET)
-                    book['Contact PH'] = input(options_color + 'Please enter loanee phone number: ' + constants.RESET)
-                    book['Contact Address'] = input(options_color + 'Please enter loanee address: ' + constants.RESET)
+                    book['Loanee'] = input(colorterminal.ColorText.YELLOW +'Please enter loanees name: ' + colorterminal.ColorText.WHITE)
+                    book['Contact PH'] = input(colorterminal.ColorText.YELLOW +'Please enter loanee phone number: ' + colorterminal.ColorText.WHITE)
+                    book['Contact Address'] = input(colorterminal.ColorText.YELLOW + 'Please enter loanee address: ' + colorterminal.ColorText.WHITE)
                 elif book['Title'] == title and book['Loaned'] is True:
-                    print(error_color + 'This book is already on loan' + constants.RESET)
-                    input(my_color + 'Please press any key to continue' + constants.RESET)
+                    print(colorterminal.ColorText.RED + 'This book is already on loan')
+                    input(colorterminal.ColorText.YELLOW + 'Please press any key to continue')
                     loaned_book = book
             with open('book_collection.json', 'w') as f:
                 json.dump(book_collection, f, indent=4)
         if loaned_book is None:
-            print(error_color + 'Book not found' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'Book not found')
         result = repeat('loan')
         if result is False:
             break
 
 def display_loaned_books():
-    choice = input(my_color + 'Please enter 1 to view all loaned books or 2 to view overdue books: ' + constants.RESET)
+    choice = input(colorterminal.ColorText.PURPLE + 'Please enter 1 to view all loaned books or 2 to view overdue books: ' + colorterminal.ColorText.WHITE)
     match choice:
         case '1':
             books_on_loan = None
@@ -164,8 +162,8 @@ def display_loaned_books():
                         print(book)     
                         books_on_loan = book
                 if books_on_loan is None:
-                    print(options_color + 'There are currently no books on loan' + constants.RESET)
-            input(error_color +'Press Enter to return to the directory: ' + constants.RESET)
+                    print(colorterminal.ColorText.RED + 'There are currently no books on loan')
+            input(colorterminal.ColorText.RED +'Press ANY KEY to return to the directory: ')
         case '2':
             books_on_loan = None
             with open('book_collection.json', 'r') as f:
@@ -184,21 +182,22 @@ def display_loaned_books():
                             print(f'This book is currently overdue by {overdue_days} days')
                             books_on_loan = book
                 if books_on_loan is None:
-                    print(options_color + 'There are currently no overdue books currently on loan' + constants.RESET)
-            input(error_color + 'Press Enter to return to the directory: ' + constants.RESET)
+                    print(colorterminal.ColorText.RED + 'There are currently no overdue books currently on loan')
+            input(colorterminal.ColorText.RED + 'Press ANY KEY to return to the directory: ')
 
 
 def return_book():
     while True:
         clear_OS()
         heading = text2art('RETURN TO LIBRARY')
-        print(options_color + heading + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + heading + colorterminal.ColorText.WHITE)
         outcome = display_loaned_library_mult()
+        print('')
         if outcome == True:
-            print(error_color + 'There are currently no books on loan' + constants.RESET)
-            input(error_color + 'Press Enter to return to the directory: ' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'There are currently no books on loan')
+            input(colorterminal.ColorText.RED + 'Press ANY KEY to return to the directory: ')
             break
-        title = input(options_color + 'Name of the book: ' + constants.RESET)
+        title = input(colorterminal.ColorText.YELLOW+ 'Name of the book: ' + colorterminal.ColorText.WHITE)
         returned_book = None
         with open('book_collection.json', 'r') as f:
             book_collection = json.load(f)
@@ -210,15 +209,15 @@ def return_book():
                     book.pop('Loanee')
                     book.pop('Contact PH')
                     book.pop('Contact Address')
-                    print(success_color + 'Book has been successfully returned to the library' + constants.RESET)
+                    print(colorterminal.ColorText.GREEN + 'Book has been successfully returned to the library')
                 elif book['Title'] == title and book['Loaned'] is False:
-                    print(error_color + 'This book is not on loan' + constants.RESET)
+                    print(colorterminal.ColorText.RED + 'This book is not on loan')
                     return
             with open('book_collection.json', 'w') as f:
                 json.dump(book_collection, f, indent=4)
         if returned_book is None:
-            print(error_color + 'Book not found' + constants.RESET)
-            input(my_color + 'Please press any key to continue' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'Book not found')
+            input(colorterminal.ColorText.RED + 'Please press ANY KEY to continue')
         result = repeat('return')
         if result is False:
             break
@@ -227,13 +226,14 @@ def remove_book():
     while True:
         clear_OS()
         heading = text2art("-------REMOVE BOOKS-------")
-        print(my_color + heading + constants.RESET)
+        print(colorterminal.ColorText.PURPLE + heading + colorterminal.ColorText.WHITE)
         result = display_library_multi_function()
+        print('')
         if result == True:
-            print(error_color + 'There are currently no books in the library' + constants.RESET)
-            input(error_color + 'Press Enter to return to the directory: ' + constants.RESET)
+            print(colorterminal.ColorText.RED +'There are currently no books in the library')
+            input(colorterminal.ColorText.RED +'Press ANY KEY to return to the directory: ')
             break
-        title = input(options_color + 'Name of the book: ' + constants.RESET)
+        title = input(colorterminal.ColorText.YELLOW + 'Name of the book: ' + colorterminal.ColorText.WHITE)
         removed_book = None
         with open('book_collection.json', 'r') as f:
             book_collection = json.load(f)
@@ -241,11 +241,11 @@ def remove_book():
                 if book['Title'] == title:
                     book_collection.remove(book)
                     removed_book = book
-                    print(success_color + 'Book removed successfully' + constants.RESET)
+                    print(colorterminal.ColorText.GREEN + 'Book removed successfully')
             with open('book_collection.json', 'w') as f:
                 json.dump(book_collection, f, indent=4)
         if removed_book is None:
-            print(error_color + 'Book not found' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'Book not found')
         result = repeat('remove')
         if result is False:
             break
@@ -253,31 +253,31 @@ def remove_book():
 def repeat(use_case):
     user_choice = 0
     while user_choice != '1' or user_choice != '2':
-        user_choice = input(f'{error_color}Press 1 to {use_case} another book or 2 to return to the directory: ' + constants.RESET)
+        user_choice = input(f'{colorterminal.ColorText.YELLOW}Press 1 to {use_case} another book or 2 to return to the directory: ' + colorterminal.ColorText.WHITE)
         if user_choice == '1':
             break
         elif user_choice == '2':
             return False
         else:
-            print(error_color + 'INVALID INPUT' + constants.RESET)
+            print(colorterminal.ColorText.RED +  'INVALID INPUT')
             continue 
 
 def loan_period():
     while True:
         try:
             clear_OS()
-            loan_period = input(options_color + 'Please enter the loan period for this library in days: ' + constants.RESET)
+            loan_period = input(colorterminal.ColorText.YELLOW + 'Please enter the loan period for this library in days: ' + colorterminal.ColorText.WHITE)
             loan_period_int = int(loan_period)
             if loan_period_int > 0:
                 with open('loan_period.txt', 'w') as f:
                     f.write(loan_period)
-                    print(success_color + 'Loan period successfully updated as ' + loan_period + ' days' + constants.RESET)
-                    input(my_color + 'Please press any key to continue' + constants.RESET)
+                    print(colorterminal.ColorText.GREEN + 'Loan period successfully updated as ' + loan_period + ' days')
+                    input(colorterminal.ColorText.YELLOW + 'Please press ANY KEY to continue')
                     break
             else:
-                print(error_color + 'Please enter a valid loan period e.g 14' + constants.RESET)
+                print(colorterminal.ColorText.RED + 'Please enter a valid loan period e.g 14')
                 continue
         except Exception:
-            print(error_color + 'Please enter a valid loan period e.g 14' + constants.RESET)
-            input(my_color + 'Please press any key to continue' + constants.RESET)
+            print(colorterminal.ColorText.RED + 'Please enter a valid loan period e.g 14' )
+            input(colorterminal.ColorText.YELLOW + 'Please press ANY KEY to continue')
             continue

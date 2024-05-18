@@ -1,2 +1,2 @@
 art==6.2
-color50==1.0.1
+color_terminal==1.0
