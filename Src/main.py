@@ -28,45 +28,45 @@ def main():
         library.print_heading('----------------')
         print('')
 
-        # try:
-        user_input = int(input(colorterminal.ColorText.YELLOW + 'Enter your choice: ' + colorterminal.ColorText.WHITE))
-        if user_input == 9:
-            library.clear_OS()
-            library.print_heading('GOODBYE')
-            break
-        elif user_input == 1:
-            library.clear_OS()
-            library.add_book()
-        elif user_input == 2:
-            library.clear_OS()
-            library.find_book()
-        elif user_input == 3:
-            library.clear_OS()
-            library.display_library()
-        elif user_input == 4:
-            library.clear_OS()
-            library.print_heading('LOAN PERIOD')
-            print(f'{colorterminal.ColorText.RED}THE CURRENT LOAN PERIOD IN DAYS IS: {colorterminal.ColorText.GREEN}{library.display_txt()}\n')
-            option = str(input(colorterminal.ColorText.YELLOW + '''PLEASE ENTER 1 TO RESET THE LOAN PERIOD\nOR\nPRESS ANY OTHER KEY TO EXIT IF DATE IS SET CORRECTLY: '''))
-            if option == '1':
-                library.loan_period()
-        elif user_input == 5:
-            library.loan_book()
-        elif user_input == 6:
-            library.clear_OS()
-            library.display_loaned_books()
-        elif user_input == 7:
-            library.clear_OS()
-            library.return_book()
-        elif user_input == 8:
-            library.clear_OS()
-            library.remove_book()
-        else:
-            print(colorterminal.ColorText.RED+ 'Invalid Input')
-            continue
-        # except Exception:
-        #     print(colorterminal.ColorText.RED + 'INVALID INPUT')
-        #     input(colorterminal.ColorText.YELLOW + 'Please press any key to continue: ')
+        try:
+            user_input = int(input(colorterminal.ColorText.YELLOW + 'Enter your choice: ' + colorterminal.ColorText.WHITE))
+            if user_input == 9:
+                library.clear_OS()
+                library.print_heading('GOODBYE')
+                break
+            elif user_input == 1:
+                library.clear_OS()
+                library.add_book()
+            elif user_input == 2:
+                library.clear_OS()
+                library.find_book()
+            elif user_input == 3:
+                library.clear_OS()
+                library.display_library()
+            elif user_input == 4:
+                library.clear_OS()
+                library.print_heading('LOAN PERIOD')
+                print(f'{colorterminal.ColorText.RED}THE CURRENT LOAN PERIOD IN DAYS IS: {colorterminal.ColorText.GREEN}{library.display_txt()}\n')
+                option = str(input(colorterminal.ColorText.YELLOW + '''PLEASE ENTER 1 TO RESET THE LOAN PERIOD\nOR\nPRESS ANY OTHER KEY TO EXIT IF DATE IS SET CORRECTLY: '''))
+                if option == '1':
+                    library.loan_period()
+            elif user_input == 5:
+                library.loan_book()
+            elif user_input == 6:
+                library.clear_OS()
+                library.display_loaned_books()
+            elif user_input == 7:
+                library.clear_OS()
+                library.return_book()
+            elif user_input == 8:
+                library.clear_OS()
+                library.remove_book()
+            else:
+                print(colorterminal.ColorText.RED+ 'Invalid Input')
+                continue
+        except Exception:
+            print(colorterminal.ColorText.RED + 'INVALID INPUT')
+            input(colorterminal.ColorText.YELLOW + 'Please press any key to continue: ')
 
 if __name__ == '__main__':
     main()

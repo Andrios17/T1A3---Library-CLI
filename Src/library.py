@@ -90,8 +90,7 @@ def find_book():
                 if book['Title'] == title:
                     clear_OS()
                     print_heading('---FIND A BOOK---')
-                    print(colorterminal.ColorText.GREEN+ 'BOOK FOUND')
-                    print('')
+                    print(colorterminal.ColorText.GREEN + 'BOOK FOUND\n' + colorterminal.ColorText.WHITE)
                     print(book)
                     book_found = book
             if book_found is None:
@@ -279,21 +278,17 @@ def remove_book():
 
 def loan_period():
     while True:
-        try:
-            clear_OS()
-            print_heading('LOAN PERIOD')
-            loan_period = input(colorterminal.ColorText.YELLOW + 'Please enter the loan period for this library in days: ' + colorterminal.ColorText.WHITE)
-            loan_period_int = int(loan_period)
-            if loan_period_int > 0:
-                with open('loan_period.txt', 'w') as f:
-                    f.write(loan_period)
-                    print(colorterminal.ColorText.GREEN + 'Loan period successfully updated as ' + loan_period + ' days')
-                    input(colorterminal.ColorText.YELLOW + 'Please press ANY KEY to continue')
-                    break
-            else:
-                print(colorterminal.ColorText.RED + 'Please enter a valid loan period e.g 14')
-                continue
-        except Exception:
-            print(colorterminal.ColorText.RED + 'Please enter a valid loan period e.g 14' )
+        clear_OS()
+        print_heading('LOAN PERIOD')
+        loan_period = input(colorterminal.ColorText.YELLOW + 'Please enter the loan period for this library in days: ' + colorterminal.ColorText.WHITE)
+        loan_period_int = int(loan_period)
+        if loan_period_int > 0:
+            with open('loan_period.txt', 'w') as f:
+                f.write(loan_period)
+                print(colorterminal.ColorText.GREEN + 'Loan period successfully updated as ' + loan_period + ' days')
+                input(colorterminal.ColorText.YELLOW + 'Please press ANY KEY to continue')
+                break
+        else:
+            print(colorterminal.ColorText.RED + 'Please enter a valid loan period e.g 14')
             input(colorterminal.ColorText.YELLOW + 'Please press ANY KEY to continue')
             continue
