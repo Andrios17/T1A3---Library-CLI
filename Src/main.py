@@ -1,6 +1,6 @@
 import json
 import os
-import Src.library as library
+import library as library
 from datetime import datetime, timedelta
 
 from color50 import rgb, constants
