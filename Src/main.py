@@ -70,5 +70,6 @@ def main():
             print(colorterminal.ColorText.RED + 'INVALID INPUT')
             input(colorterminal.ColorText.YELLOW + 'Please press any key to continue: ')
 
+# Will always run the main() function, no matter what condition
 if __name__ == '__main__':
     main()
