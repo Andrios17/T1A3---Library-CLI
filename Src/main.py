@@ -14,7 +14,7 @@ def main():
         library.clear_OS()
         library.print_heading('----------------')
         library.print_heading('LIBRARY DIRECTORY')
-        print(colorterminal.ColorText.YELLOW+ 'PLEASE CHOOSE FROM THE FOLLOWING OPTIONS')
+        print(colorterminal.ColorText.YELLOW+ 'PLEASE CHOOSE A NUMBER FROM THE FOLLOWING OPTIONS')
         print('')
         print(colorterminal.ColorText.PURPLE + '1)' + colorterminal.ColorText.WHITE + ' Add a book to the library')
         print(colorterminal.ColorText.PURPLE + '2)' + colorterminal.ColorText.WHITE + ' Find a book in the library')
