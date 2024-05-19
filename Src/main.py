@@ -6,6 +6,7 @@ from art import *
 import colorterminal
 import library
 
+#Main function, will be called when running bash scripts
 def main():
     library.clear_OS
     library.check_json()
