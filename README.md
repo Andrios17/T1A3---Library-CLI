@@ -291,7 +291,7 @@ This image is an example of a checklist which has been created for the Set Loan 
 
 ![Trello Screen Shot 19/05/2024](/docs/Trello_Complete.png)
 
-This image captures my completed Trello bored. As you can see, all features have been implemented and completed successfully.
+This image captures my completed Trello board. As you can see, all features have been implemented and completed successfully.
 
 ## References
 
