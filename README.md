@@ -8,11 +8,11 @@
 
 This program was completed as a requirement of the Higher Education Diploma as a part of the Coder Academy Bootcamp.
 
-This program is intended to be utilised by liberians. It is a library management tool which allowes users to completly self manage all inventory within their library.
+This program is intended to be utilised by liberians and readers with large book collections. It is a library management tool which allowes users to completly self manage all inventory within their library. 
 
 It provides the user with a multitude of features which allow them to add books to their library, place books on loan and store loanee information, view books which have exceeded the loan period and return these books back to the library among many others.
 
-Please note due to time contraints, it is advised that individuals who are using this program refrain from adding duplicate books to their library. This is a feature that can be implemented in future updates. 
+This is the first verion of the library management tool. There are multiple updates that can be completed quite easily to ensure more usability and performance. One of these updates can include better handling of duplicates and the ability to add a location where the books can be found in the library, or logic for the implementation of a Dewey Decimal Classification within the library.  
 
 ## How to install this program
 
