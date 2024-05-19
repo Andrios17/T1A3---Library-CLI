@@ -159,10 +159,9 @@ def loan_book():
                     book['Loanee'] = input(colorterminal.ColorText.YELLOW +'Please enter loanees name: ' + colorterminal.ColorText.WHITE)
                     book['Contact PH'] = input(colorterminal.ColorText.YELLOW +'Please enter loanee phone number: ' + colorterminal.ColorText.WHITE)
                     book['Contact Address'] = input(colorterminal.ColorText.YELLOW + 'Please enter loanee address: ' + colorterminal.ColorText.WHITE)
-                    print(f'{colorterminal.ColorText.GREEN}\n BOOK LOANED SUCCESSFULLY')
+                    print(f'{colorterminal.ColorText.GREEN}\nBOOK LOANED SUCCESSFULLY')
                 elif book['Title'] == title and book['Loaned'] is True:
                     print(colorterminal.ColorText.RED + 'This book is already on loan')
-                    input(colorterminal.ColorText.YELLOW + 'Please press any key to continue')
                     loaned_book = book
             with open('book_collection.json', 'w') as f:
                 json.dump(book_collection, f, indent=4)
