@@ -8,15 +8,18 @@ from art import text2art
 book_collection = []
 txt_data = '0'
 
+# Function to clear the OS terminal, will work for all OS'
 def clear_OS():
     if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')
 
+# Will return the date that a book is loaned
 def time_stamp():
     return datetime.now().strftime('%d-%m-%Y')
 
+# Will check if a json file exists to store all books, will create one if necessary
 def check_json():
     if os.path.exists('book_collection.json'):
         with open('book_collection.json', 'r') as f:
@@ -26,6 +29,7 @@ def check_json():
             book_collection = []
             json.dump(book_collection, f, indent=4)
 
+# Will check if a txt file exists to store the loan period, will create one if necessary
 def check_txt():
     if os.path.exists('loan_period.txt'):
         with open('loan_period.txt', 'r') as f:
@@ -35,12 +39,14 @@ def check_txt():
             txt_data = '0'
             f.writelines(txt_data)
 
+# Allows the content of the txt file to be displayed
 def display_txt():
     with open('loan_period.txt', 'r') as f:
         txt_data = f.read()
         cleaned_data = txt_data.strip("[]")
         return cleaned_data
 
+# A function that will repeat the below code. Used multiple times to guide the user around the program
 def repeat(use_case):
     print('')
     user_choice = 0
@@ -54,9 +60,11 @@ def repeat(use_case):
             print(colorterminal.ColorText.RED +  'INVALID INPUT')
             continue 
 
+# Used to print the multiple headings through out the program
 def print_heading(heading_text):
     print(colorterminal.ColorText.PURPLE + text2art(heading_text) + colorterminal.ColorText.WHITE)
 
+# Function which operates the Add Book feature
 def add_book():
     while True:
         clear_OS()
@@ -77,6 +85,7 @@ def add_book():
         if result is False:
             return
 
+# Function which operates the Find Book feature, will iterate through the json file and return the correct book
 def find_book():
     while True:
         clear_OS()
@@ -101,6 +110,8 @@ def find_book():
         if result is False:
             return
 
+
+# Function which operates the Display Library feature, will iterate over the json file and return all book data
 def display_library():
     books_in_library = None
     print_heading('---LIBRARY---')
@@ -114,6 +125,8 @@ def display_library():
         print(colorterminal.ColorText.RED + 'Please use the add books feature')
     input(colorterminal.ColorText.GREEN + 'Press Enter to return to the directory: ')
 
+# Function which operates the Display Library feature, will iterate over the json file and return all book data
+# Utilised in features which need the library to be displayed for usability
 def display_library_multi_function():
     books_in_library = None
     with open('book_collection.json', 'r') as f:
@@ -124,7 +137,8 @@ def display_library_multi_function():
     if books_in_library is None:
         return True 
 
-
+# Will iterate over the json file and return all loaned book data
+# Utilised in features which need the loan books to be displayed for usability
 def display_loaned_library_mult():
     books_on_loan = None
     with open('book_collection.json', 'r') as f:
@@ -136,6 +150,8 @@ def display_loaned_library_mult():
     if books_on_loan is None:
         return True
 
+# Operates the loan book feature, will iterate over the json file and change the 'Loaned' key to True
+# Also adds extra keys corresponding to the loanees details
 def loan_book():
     while True:
         clear_OS()
@@ -171,6 +187,8 @@ def loan_book():
         if result is False:
             break
 
+# Operates the display loaned books feature, will iterate through the json file and return all books on loan for match 1
+# Match 2 will return all books which are considered overdue
 def display_loaned_books():
     print_heading("LOANED BOOKS")
     choice = input(colorterminal.ColorText.YELLOW + 'Please enter 1 to view all loaned books or 2 to view overdue books: ' + colorterminal.ColorText.WHITE)
@@ -211,7 +229,7 @@ def display_loaned_books():
                     print(colorterminal.ColorText.RED + 'There are currently no overdue books currently on loan')
             input(colorterminal.ColorText.RED + 'Press ANY KEY to return to the directory: ')
 
-
+# Operates the return book feature. Will edit the JSON file to allow loaned books to be returned to the library
 def return_book():
     while True:
         clear_OS()
@@ -247,6 +265,7 @@ def return_book():
         if result is False:
             break
 
+# Operates the remove book feature, allows books to be removed from the library by altering the JSON file
 def remove_book():
     while True:
         clear_OS()
@@ -274,7 +293,7 @@ def remove_book():
         if result is False:
             break
 
-
+# Allows users to set the loan period for the library
 def loan_period():
     while True:
         clear_OS()

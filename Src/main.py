@@ -29,6 +29,7 @@ def main():
         library.print_heading('----------------')
         print('')
 
+# if/elif statements wrapped in a try/else block. Will handle the input from users and run the corresponding method to the feature selected.
         try:
             user_input = int(input(colorterminal.ColorText.YELLOW + 'Enter your choice: ' + colorterminal.ColorText.WHITE))
             if user_input == 9:
