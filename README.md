@@ -8,7 +8,7 @@
 
 This program was completed as a requirement of the Higher Education Diploma as a part of the Coder Academy Bootcamp.
 
-This program is intended to be utilised by liberians and readers with large book collections. It is a library management tool which allowes users to completly self manage all inventory within their library.
+This program is intended to be utilised by librarians and readers with large book collections. It is a library management tool which allows users to completely self manage all inventory within their library.
 
 It provides the user with a multitude of features which allow them to add books to their library, place books on loan and store loanee information, view books which have exceeded the loan period and return these books back to the library among many others.
 
@@ -27,9 +27,9 @@ This is the first verion of the library management tool. There are multiple upda
 ### Installation guide
 
 1. Enter your terminal and ensure you are in the correct location you wish to download the program. Once you are there, make a new directory with your
-desured name ```mkdir 'desired_name'```.
+desired name ```mkdir 'desired_name'```.
 
-2. Run the following command ```cd 'desired_name```.
+2. Run the following command ```cd 'desired_name'```.
 
 3. Clone the GitHub repository which contains this program into the directory you just created. This can be completed by entering the command ```git clone git@github.com:Andrios17/T1A3---Library-CLI.git```
 
@@ -83,19 +83,19 @@ This portion of code bears the brunt of what is displayed to the user when first
 
 When the user first runs the program, two main functions are initiatied in the background. These include the following:
 
-* ```library.check_json()``` - This function checks the directory to see if a .JSON file named 'book_collection' exists within the directory. If it does not, this function will create this file. File is extremely important as this file bears the brunt of the entire program and without it's existence, the entire program will fail to work. This is due to the fact that all books inputed by the user will be stored in this file.
+* ```library.check_json()``` - This function checks the directory to see if a .JSON file named 'book_collection' exists within the directory. If it does not, this function will create this file. This file is extremely important as this file bears the brunt of the entire program and without it's existence, the entire program will fail to work. This is due to the fact that all books inputed by the user will be stored in this file.
 
-* ``library.check_txt()``` - This function checks directory to see if a .txt file name 'loan_period' exists within the directory. If it does not, this function will create this file. This file stores the loan period inputed by the user.
+* ```library.check_txt()``` - This function checks the directory to see if a .txt file named 'loan_period' exists within the directory. If it does not, this function will create this file. This file stores the loan period inputed by the user.
 
 ### Code Snippet 2
 
 ![Menu Part 2](/docs/Main()2.png)
 
-The user is prompted to enter an option based on the menu provided. Depending on the users choice, the program will execute a function designed to execute one of the particular features of the program.
+The user is prompted to enter an option based on the menu provided. Depending on the users choice, the program will execute a function designed to trigger one of the particular features of the program.
 
 Error handling is implemented to catch any ValueErrors which may be encountered.
 
-The entire Main() function is wrapped in a ```while True``` loop so it is consistantly displayed to the user. However, this loop is broken if the user inputs 9 as a ```break``` utilised. This ensures continuity is presented to the user and they are exited from the program if and only they decide to do so.
+The entire Main() function is wrapped in a ```while True``` loop so it is consistantly displayed to the user. However, this loop is broken if the user inputs 9 as a```break``` is utilised. This ensures continuity is presented to the user and they are exited from the program if and only they decide to do so.
 
 ### Terminal Output
 
@@ -109,7 +109,7 @@ The entire Main() function is wrapped in a ```while True``` loop so it is consis
 
 The ```add_book()``` function controls the logic for adding a book to the library. The user is prompted to add the Title, Author and Year Published of the book they desire to add to their library.
 
-These details will then create a new dictionay named ```book_details``` with each prompt being the key and the input of the user being the value. The dictionary will then be appended to an empty list.
+These details will then create a new dictionary named ```book_details``` with each prompt being the key and the input of the user being the value. The dictionary will then be appended to an empty list.
 
 The JSON file will then be opened and loaded into the program with the code following this allowing the new book to be added to the library database.
 
@@ -128,7 +128,7 @@ When the book is successfully added, the user will be notified in the terminal w
 This feature allowes users to find whether a book exists within their library.
 It is extremely simple in logic, however can be very useful.
 
-The program will prompt the user to enter the title of the book they are trying to locate and assign this input to the variable ```title```. The program will then open the json file and parse the ```title``` varible through each dictionary comparing the variable to the ```['Title']``` key.
+The program will prompt the user to enter the title of the book they are trying to locate and assign this input to the variable ```title```. The program will then open the json file and parse the ```title``` variable through each dictionary comparing the variable to the ```['Title']``` key.
 
 If there is a match, the program will print the entire contents of the dictionary, including the loan status of the book. The user will also be notified that their search was successful through the use of a print statement.
 
@@ -147,9 +147,9 @@ The user is then prompted to enter either search for another book, or return to 
 
 Again, the code utilsied to perform this feature is simple in its implementation.
 
-When the user enters the prompt to perform this feature, the program will open the JSON file used to store all the dictionarys created to store the books. It will then display each book to the terminal.
+When the user enters the prompt to perform this feature, the program will open the JSON file used to store all the dictionary's created to maintain the library. It will then display each book to the terminal.
 
-If the there are no books stored in the JSON file. The user will be notified and guided to revert to the add books feature to begin building their library so any books added can be displayed.
+If there are no books stored in the JSON file, the user will be notified and guided to revert to the add books feature to begin building their library so any books added can be displayed.
 
 There is a prompt to return the main menu which the user can initiate when they are finished viewing the library.
 
@@ -163,15 +163,15 @@ There is a prompt to return the main menu which the user can initiate when they 
 
 ![Set loan period](/docs/Loan_P_C.png)
 
-This feature allowes users to set the loan period of their library. I wanted the user to be able to change this period as it is realistic for a library to change the policy regarding the length in which they allow their books to be loaned out to individuals.
+This feature allows users to set the loan period of their library. I wanted the user to be able to change this period as it is realistic for a library to change the policy regarding the length in which they allow their books to be loaned out to individuals.
 
-The loan period which is entered by the user is saved and writen into the loan_period.txt file which was created when the user runs the program for the first time. This ensures that all aspects of the program is stable and useable for reusabilty of the program. For example, a user can exit and program all together and have the peace of mind that everything will be saved.
+The loan period which is entered by the user is saved and writen into the loan_period.txt file which was created when the user runs the program for the first time. This ensures that all aspects of the program is stable and useable for reusability of the program. For example, a user can exit the program all together and have the peace of mind that everything will be saved.
 
 The function begins by prompting the user to enter the loan period which they would like to set for their library.
 
-This value is then converted into an int to allow for comparisons in the proceeding ``if`` and ``else`` statements.
+This value is then converted into an integer to allow for comparisons in the proceeding ``if`` and ``else`` statements.
 
-Once the user has inputed their period, the txt file which stores this data and opened and overwritten with the new data. The user will be notified of its success, however this will only occur if the ``int`` provided is greater than 0.
+Once the user has inputed their period, the txt file which stores this data is opened and overwritten with the new data. The user will be notified of its success, however this will only occur if the ``int`` provided is greater than 0.
 
 If it is not, the user will be prompted to enter an ``int`` which is valid.
 
@@ -187,9 +187,9 @@ If it is not, the user will be prompted to enter an ``int`` which is valid.
 
 The code snippet above shows the backbone of the logic to allow users to place a book on loan.
 
-It firstly calls the upon the ```display_lubrary_multi_function()``` which displays all books in the library to the user. This allowes the user to view all books in the library for ease access.
+It firstly calls upon the ```display_library_multi_function()``` which displays all books in the library to the user. This allows the user to view all books in the library for ease access.
 
-The user will prompted to enter a book as long as there is a book in the library. Once the user has entered the book they desire to place on loan, they will be prompted to add the loanees Name, Contact PH and Address details. All of which will be added to the dictionary of the book which is located in the JSON file.
+The user will be prompted to enter a book as long as there is a book in the library. Once the user has entered the book they desire to place on loan, they will be prompted to add the loanees Name, Contact PH and Address details. All of which will be added to the dictionary of the book which is located in the JSON file.
 
 When this occurs, the loan will be time stamped using the ```time_stamp()``` function. This is completed to allow the user to view any overdue books in another feature of the program.
 
@@ -233,13 +233,13 @@ The beginning of the logic allowes the user to enter which of the choices they d
 
 The above code demonstrates the logic created to allow a user to return a book to the library which has been loaned.
 
-It firstly call upon the ```display_loaned_library_mult()``` function which will display all loaned books in the library. This function will return a result of ```True``` if there are no books in the library and if this is the case, the user will be notified of this result and the program will return to the main menu.
+It firstly calls upon the ```display_loaned_library_mult()``` function which will display all loaned books in the library. This function will return a result of ```True``` if there are no books in the library and if this is the case, the user will be notified of this result and the program will return to the main menu.
 
 However, if there are loaned books, the user will be prompted to enter the title of the book they desire to return to the library. The JSON file holding the data of the library books will be opened and iterated over to find the book which is being returned. Once found, the ```Loaned``` key will return to ```False``` and the keys which pertain to the loan status will be popped and removed.
 
 If the book which is inputted is not on loan, the user will be notified. This will also occur if the book which is inputted does not exist in the library all together.
 
-The ```repeat(use_case)``` is then called upon to provide the user with the choice to either enter another book to be returned, or retrun to the main menu.
+The ```repeat(use_case)``` is then called upon to provide the user with the choice to either enter another book to be returned, or return to the main menu.
 
 ### Terminal Output
 
@@ -255,9 +255,9 @@ The logic for removing a book is demonstrated above.
 
 The code first calls the upon the ```display_library_multi_function()``` which will display all books in the library and return a value depending on whether there are any books in the library. ```False``` if there books, and ```True``` if there isnt. This is the same logic explained above in the previous feature.
 
-Once the user inputs the title of the book they are looking to remove, the JSON file then be opened and iterated through to find the desired book. Once it is found, the book will be removed from the JSON file.
+Once the user inputs the title of the book they are looking to remove, the JSON file will then be opened and iterated through to find the desired book. Once it is found, the book will be removed from the JSON file.
 
-Once this is completed, the updated JSON file will be written into JSON file using the ```json.dump()``` method.
+Once this is completed, the JSON file will be updated using the  ```json.dump()``` method.
 
 ### Terminal Outout
 
@@ -267,19 +267,19 @@ Once this is completed, the updated JSON file will be written into JSON file usi
 
 Trello was utilised as the project management software to create the implementation plan for this project.
 
-A link to the trello bored for this program can be found here [Trello Board](https://trello.com/invite/b/zP8fBwk3/ATTI2b5bddbcb8861c2e01cd449b0e843ccdBE626378/library-management-program)
+A link to the trello board for this program can be found here [Trello Board](https://trello.com/invite/b/zP8fBwk3/ATTI2b5bddbcb8861c2e01cd449b0e843ccdBE626378/library-management-program)
 
-I also Trello exensively during the development process of this program. However, with this being said, the dates which were created as deadlines had to be altered extensively due to the fact I recieved a week long extension for this assessment task. I opted to keep the original dates in the trello bored to examplify the original plan for the assignment. However, each feature was completed in the following week on the corresponding days of the dates provided.
+I also used Trello extensively during the development process of this program. However, with this being said, the dates which were created as deadlines had to be altered extensively due to the fact I recieved a week long extension for this assessment task. I opted to keep the original dates in the trello board to examplify the original plan for the assignment. However, each feature was completed in the following week on the corresponding days of the dates provided.
 
-I instead utilised the trello bored as more of a guidline to the spacing between tasks and it was extremely helpful to have all the features and tasks which need to be completed laid out cleanly. All features and tasks contain an extensive checklist which need to be ticked off prior to completion.
+I instead utilised the trello board as more of a guideline to the spacing between tasks and it was extremely helpful to have all the features and tasks which need to be completed laid out cleanly. All features and tasks contain an extensive checklist which need to be ticked off prior to completion.
 
-I created the Trello prior to beginning my code for this project on the 5th of May 2024 . However, I neglected to screenshot the outcome. The below screenshot is a snippet of the full Trello bored prior to completion and was taken on the 14th of May 2024, when I returned to complete my assignment.
+I created the Trello prior to beginning my code for this project on the 5th of May 2024 . However, I neglected to screenshot the outcome. The below screenshot is a snippet of the full Trello board prior to completion and was taken on the 14th of May 2024, when I returned to complete my assignment.
 
 ### Screenshot on the 14th of May 2024
 
 ![Trello Screen Shot 14/05/2024](/docs/Trello_W1.png)
 
-As you can see, the due dates read as overdue due to the fact I had to take a week long break from completing the assignment due to illness. However, everything is extensively laid out and plan for the assignment is in place.
+As you can see, the due dates read as overdue because I had to take a week long break from completing the assignment due to illness. However, everything is extensively laid out and a plan for the assignment is in place.
 
 ### Screenshot of feature plan checklist
 
